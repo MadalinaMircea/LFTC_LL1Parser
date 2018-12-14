@@ -1,1 +1,7 @@
 c:\users\madutz\documents\visual studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\bin\Debug\LFTC_LL1Parser.exe.config
+C:\Users\Madalina Mircea\Documents\Visual Studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\LFTC_LL1Parser\bin\Debug\LFTC_LL1Parser.exe.config
+C:\Users\Madalina Mircea\Documents\Visual Studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\LFTC_LL1Parser\bin\Debug\LFTC_LL1Parser.exe
+C:\Users\Madalina Mircea\Documents\Visual Studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\LFTC_LL1Parser\bin\Debug\LFTC_LL1Parser.pdb
+C:\Users\Madalina Mircea\Documents\Visual Studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\LFTC_LL1Parser\obj\Debug\LFTC_LL1Parser.csprojResolveAssemblyReference.cache
+C:\Users\Madalina Mircea\Documents\Visual Studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\LFTC_LL1Parser\obj\Debug\LFTC_LL1Parser.exe
+C:\Users\Madalina Mircea\Documents\Visual Studio 2015\Projects\LFTC_LL1Parser\LFTC_LL1Parser\LFTC_LL1Parser\obj\Debug\LFTC_LL1Parser.pdb
