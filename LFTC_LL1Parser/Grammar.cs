@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LFTC_LL1Parser
 {
-    class Grammar
+    public class Grammar
     {
         public List<String> Terminals { get; set; }
         public List<String> Nonterminals { get; set; }
@@ -33,34 +33,14 @@ namespace LFTC_LL1Parser
         {
             FromFile(filename);
         }
-
-        private void AddProduction(string from, string to)
-        {
-            bool found = false;
-            for(int i = 0; i < Productions.Count(); i++)
-            {
-                if(Productions[i].From == from)
-                {
-                    Productions[i].To.Add(to);
-                    found = true;
-                    break;
-                }
-            }
-
-            if(!found)
-            {
-                List<String> p = new List<String>();
-                p.Add(to);
-                Productions.Add(new Production(from, p));
-            }
-        }
-
+    
         private void FromFile(string filename)
         {
             Nonterminals = new List<string>();
             Terminals = new List<string>();
             Productions = new List<Production>();
 
+            int count = 1;
             string[] grammar = System.IO.File.ReadAllLines(filename);
 
             Nonterminals.AddRange(grammar[0].Split(',').Select(x => x.Trim()).ToList());
@@ -76,14 +56,24 @@ namespace LFTC_LL1Parser
                 {
                     foreach (string s in aux[1].Split('|'))
                     {
-                        AddProduction(aux[0].Trim(), s.Trim());
+                        Productions.Add(new Production(aux[0].Trim(), s.Trim(), count++));
                     }
                 }
                 else
                 {
-                    AddProduction(aux[0].Trim(), aux[1].Trim());
+                    Productions.Add(new Production(aux[0].Trim(), aux[1].Trim(), count++));
                 }
             }
+        }
+
+        public List<Production> GetProductionsWithRHS(string nonterminal)
+        {
+            return Productions.Where(prod => prod.To.Split(' ').ToList().Contains(nonterminal)).ToList();
+        }
+
+        public List<Production> GetProductionsForNonterminal(string nonterminal)
+        {
+            return Productions.Where(prod => prod.From == nonterminal).ToList();
         }
     }
 }

@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace LFTC_LL1Parser
 {
-    class Production
+    public class Production
     {
-        public String From { get; set; }
-        public List<String> To { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public int Index { get; set; }
 
-        public Production(string from, List<string> to)
+        public Production(string from, string to, int index)
         {
             From = from;
             To = to;
+            Index = index;
         }
     }
 }
