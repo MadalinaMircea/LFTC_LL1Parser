@@ -1,0 +1,31 @@
+declare
+	int x, y2;
+	char a;
+	string text;
+execute
+{
+	print("HelloWorld");
+	for(x=0; x<5; x=x)
+	{
+		print(x);
+	}
+	a = 'x';
+	y=10;
+	if(a=='y')
+	{
+		print("Wrong");
+		y = 0;
+	}
+	else
+	{
+		if(y > 100)
+		{
+			y = 100;
+		}
+		if(y != 0)
+		{
+			y = 2;
+		}
+	}
+	print(y);
+}.

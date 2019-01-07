@@ -1,11 +1,27 @@
-S,A,B,C,D
-+,*,(,),a
-S
-S-B A
-A-+ B A
-A-EPSILON
-B-D C
-C-* D C
-C-EPSILON
-D-( S )
-D-a
+T1 T2 T3 T5 T6 T7 T8 T9 T10 T11 program compoundStmt declarationList declaration type idList stmtList stmt assignStmt printStmt ifStmt forStmt arrayAssignStmt numList number expression term nonZeroNumber condition relation letter lettersOrDigits digit
++ - " ' * / = < > != == . , ; ( ) { } execute declare print if else for int char string IDENTIFIER CONSTANT
+program
+program | T11 execute compoundStmt .
+T11 | EPSILON | declare declarationList
+declarationList | declaration ; T1
+T1 | EPSILON | declarationList
+declaration | type idList
+idList | IDENTIFIER T2
+T2 | EPSILON | , idList
+type | string | char | int
+compoundStmt | { stmtList }
+stmtList | stmt T3
+T3 | EPSILON | stmtList
+stmt | assignStmt ; | printStmt ; | ifStmt | forStmt
+assignStmt | IDENTIFIER = expression
+expression | term | expression T5
+T5 | + term | - term
+term | CONSTANT | IDENTIFIER | term T6
+T6 | * term | / term
+printStmt | print ( T7 )
+T7 | IDENTIFIER | CONSTANT
+ifStmt | if ( condition ) compoundStmt T8
+T8 | EPSILON | else compoundStmt
+forStmt | for ( assignStmt ; condition ; assignStmt ) compoundStmt
+condition | expression relation expression                                                              
+relation | == | > | != | <

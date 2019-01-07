@@ -320,12 +320,85 @@ namespace LFTC_LL1Parser
                     }
                 }
 
+                if (isAccepted == false)
+                    return null;
+
                 return pi;
             }
             catch (Exception ex)
             {
                 return null;
             }
+        }
+
+        public static List<int> LL1(Dictionary<string, Dictionary<string, Rule>> parseTable, Grammar grammar, ProgramInternalForm pif)
+        {
+            //try
+            //{
+                Stack<string> alfa = new Stack<string>();
+                Stack<string> beta = new Stack<string>();
+                List<int> pi = new List<int>();
+                bool go = true, isAccepted = false;
+
+                alfa.Push(DOLLAR);
+                for (int i = pif.program.Count - 1; i >= 0; i--)
+                {
+                    int code = pif.program[i].Code;
+
+                    if (code == 0)
+                        alfa.Push("IDENTIFIER");
+                    else if (code == 1)
+                        alfa.Push("CONSTANT");
+                    else
+                        alfa.Push(LexicalAnalyzer.reverseCodeTable[pif.program[i].Code]);
+                }
+
+                beta.Push(DOLLAR);
+                beta.Push(grammar.StartingSymbol);
+
+
+                while (go)
+                {
+                    string row = beta.Peek() == EPSILON ? DOLLAR : beta.Peek();
+                    string column = alfa.Peek() == EPSILON ? DOLLAR : alfa.Peek();
+                    Rule rule = parseTable[row][column];
+                    if (rule.ProductionIndex != 0)
+                    {
+                        beta.Pop();
+                        if (rule.ProductionRHS != EPSILON)
+                        {
+                            string[] rhs = rule.ProductionRHS.Split(' ');
+                            for (int i = rhs.Length - 1; i >= 0; i--)
+                                beta.Push(rhs[i].ToString());
+                            pi.Add(rule.ProductionIndex);
+                        }
+                    }
+                    else if (rule.ProductionRHS == "pop")
+                    {
+                        beta.Pop();
+                        alfa.Pop();
+                    }
+                    else if (rule.ProductionRHS == "acc")
+                    {
+                        go = false;
+                        isAccepted = true;
+                    }
+                    else
+                    {
+                        go = false;
+                        isAccepted = false;
+                    }
+                }
+
+                if (isAccepted == false)
+                    return null;
+
+                return pi;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
         }
     }
 }

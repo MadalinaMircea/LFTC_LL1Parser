@@ -1,8 +1,0 @@
-S,A,B,C,T
-s,d,;
-S
-S-A B
-A-d T
-T-EPSILON|; A
-B-s C
-C-EPSILON | ; B

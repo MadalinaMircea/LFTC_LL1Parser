@@ -43,25 +43,19 @@ namespace LFTC_LL1Parser
             int count = 1;
             string[] grammar = System.IO.File.ReadAllLines(filename);
 
-            Nonterminals.AddRange(grammar[0].Split(',').Select(x => x.Trim()).ToList());
+            Nonterminals.AddRange(grammar[0].Split(' ').Select(x => x.Trim()).ToList());
 
-            Terminals.AddRange(grammar[1].Split(',').Select(x => x.Trim()).ToList());
+            Terminals.AddRange(grammar[1].Split(' ').Select(x => x.Trim()).ToList());
 
             StartingSymbol = grammar[2];
 
             for (int i = 3; i < grammar.Length; i++)
             {
-                string[] aux = grammar[i].Split('-');
-                if (aux[1].Contains('|'))
+                string[] aux = grammar[i].Split('|');
+
+                foreach (string s in aux.Skip(1))
                 {
-                    foreach (string s in aux[1].Split('|'))
-                    {
-                        Productions.Add(new Production(aux[0].Trim(), s.Trim(), count++));
-                    }
-                }
-                else
-                {
-                    Productions.Add(new Production(aux[0].Trim(), aux[1].Trim(), count++));
+                    Productions.Add(new Production(aux[0].Trim(), s.Trim(), count++));
                 }
             }
         }

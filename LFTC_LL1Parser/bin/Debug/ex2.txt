@@ -1,0 +1,30 @@
+declare
+	int i, word20;
+	string hello;
+execute
+{
+	i = 5; word20 = "step";
+	print(i);
+	print(70);
+	for(i = 8; i < 20; i = i)
+	{
+		word20 = word20;
+		print(word20);
+		if(i < 14)
+		{
+			print(i);
+		}
+		else
+		{
+			print("Toobig");
+			hello = "helloworld";
+		}
+		if(i == 19)
+		{
+			hello = "Helloworld";
+			word20 = "Finish";
+		}
+	}
+	print(hello);
+	print(word20);
+}.
